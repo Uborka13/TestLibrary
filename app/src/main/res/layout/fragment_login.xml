@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="true"
+    android:focusable="true"
+    tools:context=".ui.fragments.LoginFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/margin_login_text_60"
+        android:layout_marginLeft="@dimen/margin_login_text_60"
+        android:layout_marginRight="@dimen/margin_login_text_60"
+        android:layout_marginStart="@dimen/margin_login_text_60"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/padding_login_textcontainer_80">
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_login_username"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="@string/login_username">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/edit_text_login_username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:singleLine="true" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_login_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/registration_password">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/edit_text_login_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword" />
+        </android.support.design.widget.TextInputLayout>
+
+        <Button
+            android:id="@+id/button_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/login_button"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/button_registration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/login_registration"
+            android:textAllCaps="false" />
+
+    </LinearLayout>
+
+</FrameLayout>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragments.RegistrationFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/margin_login_text_60"
+        android:layout_marginLeft="@dimen/margin_login_text_60"
+        android:layout_marginRight="@dimen/margin_login_text_60"
+        android:layout_marginStart="@dimen/margin_login_text_60"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/padding_login_textcontainer_80">
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_registration_username"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="@string/login_username">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/edit_text_registration_username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:singleLine="true" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_registration_email_first"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="@string/registration_email">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/edit_text_registration_email_first"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:singleLine="true" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_registration_email_second"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="@string/registration_email_again">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/edit_text_registration_email_second"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:longClickable="false"
+                android:singleLine="true" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_registration_password_first"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/registration_password">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/edit_text_registration_password_first"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:longClickable="false" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_registration_password_second"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/registration_password_again">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/edit_text_registration_password_second"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:longClickable="false" />
+        </android.support.design.widget.TextInputLayout>
+
+        <Button
+            android:id="@+id/button_registration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/login_registration"
+            android:textAllCaps="false" />
+    </LinearLayout>
+</FrameLayout>
