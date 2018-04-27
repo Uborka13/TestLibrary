@@ -16,6 +16,7 @@ import android.widget.EditText;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import io.realm.SyncCredentials;
 import ubi.soft.testlibraries.R;
 
 /**
@@ -91,6 +92,12 @@ public class LoginFragment extends Fragment {
         mListener = null;
     }
 
+    @OnClick(R.id.button_login)
+    public void attemptToLogin() {
+        SyncCredentials credentials = SyncCredentials.usernamePassword(editTextUsername.getText().toString(), editTextPassword.getText().toString());
+        mListener.userAttemptToLogin(credentials);
+    }
+
     @OnClick(R.id.button_registration)
     public void startRegistrationFragment() {
         getFragmentManager().beginTransaction().replace(R.id.frame_login_fragment_container, RegistrationFragment.newInstance()).addToBackStack("Registration").commitAllowingStateLoss();
@@ -98,5 +105,7 @@ public class LoginFragment extends Fragment {
 
     public interface OnFragmentInteractionListener {
         void onFragmentInteraction(Uri uri);
+
+        void userAttemptToLogin(SyncCredentials credentials);
     }
 }

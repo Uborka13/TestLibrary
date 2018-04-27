@@ -3,10 +3,14 @@ package ubi.soft.testlibraries.ui.activities;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.FrameLayout;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.realm.ObjectServerError;
+import io.realm.SyncCredentials;
+import io.realm.SyncUser;
 import ubi.soft.testlibraries.R;
 import ubi.soft.testlibraries.ui.fragments.LoginFragment;
 import ubi.soft.testlibraries.ui.fragments.RegistrationFragment;
@@ -28,5 +32,22 @@ public class LoginActivity extends AppCompatActivity implements LoginFragment.On
     @Override
     public void onFragmentInteraction(Uri uri) {
         // Still empty
+    }
+
+    //        buildConfigField "String", "AUTH_URL", "first-realm-test-project.us1.cloud.realm.io/auth"
+
+    @Override
+    public void userAttemptToLogin(SyncCredentials credentials) {
+        SyncUser.logInAsync(credentials, "https://first-realm-test-project.us1.cloud.realm.io/auth", new SyncUser.Callback<SyncUser>() {
+            @Override
+            public void onSuccess(SyncUser result) {
+                Log.d("LOGIN_ACTIVITY", "Sikerült");
+            }
+
+            @Override
+            public void onError(ObjectServerError error) {
+                Log.d("LOGIN_ACTIVITY", "Nem sikerült");
+            }
+        });
     }
 }
