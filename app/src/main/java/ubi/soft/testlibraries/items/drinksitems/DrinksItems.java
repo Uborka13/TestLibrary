@@ -1,4 +1,4 @@
-package ubi.soft.testlibraries.items;
+package ubi.soft.testlibraries.items.drinksitems;
 
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;

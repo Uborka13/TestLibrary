@@ -21,8 +21,8 @@ import io.realm.SyncConfiguration;
 import io.realm.SyncUser;
 import ubi.soft.testlibraries.BuildConfig;
 import ubi.soft.testlibraries.R;
-import ubi.soft.testlibraries.items.DrinksItems;
-import ubi.soft.testlibraries.items.DrinksItemsAdapter;
+import ubi.soft.testlibraries.items.drinksitems.DrinksItems;
+import ubi.soft.testlibraries.items.drinksitems.DrinksItemsAdapter;
 
 /**
  * A simple {@link Fragment} subclass.

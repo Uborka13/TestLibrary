@@ -1,4 +1,4 @@
-package ubi.soft.testlibraries.items;
+package ubi.soft.testlibraries.items.drinksitems;
 
 import android.content.Context;
 import android.content.Intent;
@@ -27,7 +27,7 @@ public class DrinksItemsAdapter extends RealmRecyclerViewAdapter<DrinksItems, Dr
     @NonNull
     @Override
     public DrinksViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.simple_list_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.drinks_list_item, parent, false);
         return new DrinksViewHolder(view);
     }
 
