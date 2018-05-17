@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<level-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@android:id/background">
+        <bitmap android:src="@drawable/empty_pixel_beer" />
+    </item>
+    <item android:id="@+id/whole_number">
+        <bitmap android:src="@drawable/half_pixel_beer" />
+    </item>
+    <item android:id="@android:id/progress">
+        <bitmap android:src="@drawable/full_pixel_beer" />
+    </item>
+</level-list>

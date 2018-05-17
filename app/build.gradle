@@ -9,13 +9,20 @@ android {
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-//        buildConfigField "String", "AUTH_URL", "first-realm-test-project.us1.cloud.realm.io/auth"
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    flavorDimensions "default"
+    productFlavors {
+        dev {
+            buildConfigField "String", "AUTH_URL", "\"$System.env.REALM_CLOUD\""
         }
     }
 }
@@ -27,9 +34,10 @@ realm {
 dependencies {
 
     def latestSupportLib = '27.1.1'
+    def fastAdapterVersion = '3.2.5'
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support.constraint:constraint-layout:1.1.0'
-    implementation 'com.android.support:support-v4:27.1.1'
+    implementation "com.android.support:support-v4:${latestSupportLib}"
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
@@ -37,16 +45,22 @@ dependencies {
     implementation "com.android.support:design:${latestSupportLib}"
     implementation "com.android.support:appcompat-v7:${latestSupportLib}"
     implementation "com.android.support:recyclerview-v7:${latestSupportLib}"
+//    implementation 'com.google.android.material:material:1.0.0-alpha1'
 
-//    implementation 'com.mikepenz:fastadapter:3.2.5'
-//    implementation 'com.mikepenz:fastadapter-commons:3.2.5'
-//    implementation 'com.mikepenz:fastadapter-extensions:3.2.5'
-//    implementation 'com.mikepenz:fastadapter-extensions-expandable:3.2.5'
+    implementation 'io.realm:android-adapters:3.0.0'
+
+    implementation "com.mikepenz:fastadapter:${fastAdapterVersion}"
+    implementation "com.mikepenz:fastadapter-commons:${fastAdapterVersion}"
+    implementation "com.mikepenz:fastadapter-extensions:${fastAdapterVersion}"
+    implementation "com.mikepenz:fastadapter-extensions-expandable:${fastAdapterVersion}"
 //
 //    //The tiny Materialize library used for its useful helper classes
 //    implementation 'com.mikepenz:materialize:1.1.2'
 
     implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    implementation('com.wdullaer:materialdatetimepicker:3.3.1') {
+        exclude group: 'com.android.support'
+    }
 
 }

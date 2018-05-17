@@ -24,4 +24,10 @@
     <string name="registration_email">E-mail</string>
     <string name="registration_email_again">E-mail again</string>
     <string name="registration_password_again">Password again</string>
+    <string name="registartion_over_18">Over 18</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="detail_location">Location</string>
+    <string name="detail_desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam nisl quam, tincidunt et eros sed, aliquam condimentum felis. Cras leo neque, vulputate eget nulla sit amet, faucibus vulputate turpis. Donec vestibulum odio nisl, et aliquam ex consectetur vestibulum. Quisque non leo scelerisque, ultrices lacus sit amet, cursus nulla. Praesent pellentesque velit arcu, at sodales augue porttitor vel. Cras vel risus nisi. Sed a velit vel velit imperdiet egestas quis vel diam. Aenean vitae diam nec dui laoreet lobortis. Pellentesque gravida felis risus. Nunc mi mauris, ultricies eget accumsan id, euismod non sem.</string>
 </resources>

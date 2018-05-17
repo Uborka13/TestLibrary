@@ -87,11 +87,26 @@
                 android:longClickable="false" />
         </android.support.design.widget.TextInputLayout>
 
-        <Button
-            android:id="@+id/button_registration"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/login_registration"
-            android:textAllCaps="false" />
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/check_box_registration_age_validation"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/registartion_over_18" />
+
+            <Button
+                android:id="@+id/button_registration"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/login_registration"
+                android:textAllCaps="false" />
+        </LinearLayout>
+
     </LinearLayout>
 </FrameLayout>

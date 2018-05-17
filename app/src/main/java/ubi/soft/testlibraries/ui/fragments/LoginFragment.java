@@ -1,10 +1,10 @@
 package ubi.soft.testlibraries.ui.fragments;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -63,12 +63,6 @@ public class LoginFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_login, container, false);
     }
 
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -94,18 +88,23 @@ public class LoginFragment extends Fragment {
 
     @OnClick(R.id.button_login)
     public void attemptToLogin() {
-        SyncCredentials credentials = SyncCredentials.usernamePassword(editTextUsername.getText().toString(), editTextPassword.getText().toString());
-        mListener.userAttemptToLogin(credentials);
+        if (editTextUsername.getText() != null
+                && editTextUsername.getText().length() > 0
+                && editTextPassword.getText() != null
+                && editTextPassword.getText().length() > 0) {
+            SyncCredentials credentials = SyncCredentials.usernamePassword(editTextUsername.getText().toString(), editTextPassword.getText().toString());
+            mListener.userAttemptToLogin(credentials);
+        } else {
+            Snackbar.make(getView(), "Empty username or password", Snackbar.LENGTH_LONG).show();
+        }
     }
 
     @OnClick(R.id.button_registration)
     public void startRegistrationFragment() {
-        getFragmentManager().beginTransaction().replace(R.id.frame_login_fragment_container, RegistrationFragment.newInstance()).addToBackStack("Registration").commitAllowingStateLoss();
+        getFragmentManager().beginTransaction().replace(R.id.frame_login_fragment_container, RegistrationFragment.newInstance()).addToBackStack(null).commitAllowingStateLoss();
     }
 
     public interface OnFragmentInteractionListener {
-        void onFragmentInteraction(Uri uri);
-
         void userAttemptToLogin(SyncCredentials credentials);
     }
 }
