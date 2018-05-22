@@ -63,7 +63,7 @@ public class MenuActivity extends AppCompatActivity {
         if (supportActionBar != null) {
             VectorDrawableCompat indicator =
                     VectorDrawableCompat.create(getResources(), R.drawable.ic_menu_white_24dp, getTheme());
-            indicator.setTint(ResourcesCompat.getColor(getResources(), R.color.md_white_1000, getTheme()));
+            indicator.setTint(ResourcesCompat.getColor(getResources(), R.color.mdtp_white, getTheme()));
             supportActionBar.setHomeAsUpIndicator(indicator);
             supportActionBar.setDisplayHomeAsUpEnabled(true);
         }

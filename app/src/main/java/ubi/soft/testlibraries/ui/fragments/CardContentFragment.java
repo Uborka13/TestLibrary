@@ -16,11 +16,11 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.realm.Realm;
 import io.realm.RealmResults;
-import io.realm.Sort;
 import io.realm.SyncConfiguration;
 import io.realm.SyncUser;
 import ubi.soft.testlibraries.BuildConfig;
 import ubi.soft.testlibraries.R;
+import ubi.soft.testlibraries.controllers.RealmController;
 import ubi.soft.testlibraries.items.barsitems.BarsItems;
 import ubi.soft.testlibraries.items.barsitems.BarsItemsAdapter;
 
@@ -70,7 +70,7 @@ public class CardContentFragment extends Fragment {
     }
 
     private void setUpRealm() {
-        final SyncConfiguration userConfig = new SyncConfiguration.Builder(SyncUser.current(), BuildConfig.AUTH_URL + "/~/drinks").build();
+        final SyncConfiguration userConfig = new SyncConfiguration.Builder(SyncUser.current(), BuildConfig.BASE_URL + "/~/drinks").build();
         Realm.getInstanceAsync(userConfig, new Realm.Callback() {
             @Override
             public void onSuccess(@NonNull Realm realm) {
@@ -93,7 +93,8 @@ public class CardContentFragment extends Fragment {
     }
 
     public RealmResults<BarsItems> getRealmItems() {
-        return realm.where(BarsItems.class).sort("rating", Sort.DESCENDING).findAllAsync();
+        return RealmController.getInstance().getRealmList(BarsItems.class);
+        //return realm.where(BarsItems.class).sort("rating", Sort.DESCENDING).findAllAsync();
     }
 
     void setRealm(Realm realm) {

@@ -27,7 +27,7 @@ import ubi.soft.testlibraries.ui.fragments.LoginFragment;
 import ubi.soft.testlibraries.ui.fragments.RegistrationFragment;
 import ubi.soft.testlibraries.users.User;
 
-import static ubi.soft.testlibraries.BuildConfig.AUTH_URL;
+import static ubi.soft.testlibraries.BuildConfig.BASE_URL;
 
 public class LoginActivity extends AppCompatActivity implements LoginFragment.OnFragmentInteractionListener, RegistrationFragment.OnFragmentInteractionListener {
 
@@ -56,7 +56,7 @@ public class LoginActivity extends AppCompatActivity implements LoginFragment.On
     @Override
     public void userAttemptToLogin(final SyncCredentials credentials) {
         showProgress(true);
-        SyncUser.logInAsync(credentials, AUTH_URL + "/auth", new SyncUser.Callback<SyncUser>() {
+        SyncUser.logInAsync(credentials, BASE_URL + "/auth", new SyncUser.Callback<SyncUser>() {
             @Override
             public void onSuccess(SyncUser result) {
                 showProgress(false);
@@ -82,7 +82,7 @@ public class LoginActivity extends AppCompatActivity implements LoginFragment.On
         // Create request
         UserCondition condition = UserCondition.noExistingPermissions();
         AccessLevel accessLevel = AccessLevel.READ;
-        PermissionRequest request = new PermissionRequest(condition, AUTH_URL + "/items", accessLevel);
+        PermissionRequest request = new PermissionRequest(condition, BASE_URL + "/items", accessLevel);
 
         pm.applyPermissions(request, new PermissionManager.ApplyPermissionsCallback() {
             @Override
@@ -100,7 +100,7 @@ public class LoginActivity extends AppCompatActivity implements LoginFragment.On
     @Override
     public void userAttemptToRegister(final SyncCredentials credentials, final User user) {
         showProgress(true);
-        SyncUser.logInAsync(credentials, AUTH_URL + "/items", new SyncUser.Callback<SyncUser>() {
+        SyncUser.logInAsync(credentials, BASE_URL + "/items", new SyncUser.Callback<SyncUser>() {
             @Override
             public void onSuccess(SyncUser result) {
                 showProgress(false);

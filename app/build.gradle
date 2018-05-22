@@ -22,7 +22,7 @@ android {
     flavorDimensions "default"
     productFlavors {
         dev {
-            buildConfigField "String", "AUTH_URL", "\"$System.env.REALM_CLOUD\""
+            buildConfigField "String", "BASE_URL", "\"$System.env.REALM_CLOUD\""
         }
     }
 }
@@ -50,10 +50,13 @@ dependencies {
 
     implementation 'io.realm:android-adapters:3.0.0'
 
-    implementation "com.mikepenz:fastadapter:${fastAdapterVersion}"
+//    implementation 'io.realm:realm-android:0.87.5'
+//    annotationProcessor 'io.realm:realm-android:0.87.5'
+
+    /*implementation "com.mikepenz:fastadapter:${fastAdapterVersion}"
     implementation "com.mikepenz:fastadapter-commons:${fastAdapterVersion}"
     implementation "com.mikepenz:fastadapter-extensions:${fastAdapterVersion}"
-    implementation "com.mikepenz:fastadapter-extensions-expandable:${fastAdapterVersion}"
+    implementation "com.mikepenz:fastadapter-extensions-expandable:${fastAdapterVersion}"*/
 //
 //    //The tiny Materialize library used for its useful helper classes
 //    implementation 'com.mikepenz:materialize:1.1.2'
