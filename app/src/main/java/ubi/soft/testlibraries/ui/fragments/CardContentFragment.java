@@ -21,13 +21,13 @@ import io.realm.SyncConfiguration;
 import io.realm.SyncUser;
 import ubi.soft.testlibraries.BuildConfig;
 import ubi.soft.testlibraries.R;
-import ubi.soft.testlibraries.items.drinksitems.DrinksItems;
-import ubi.soft.testlibraries.items.drinksitems.DrinksItemsAdapter;
+import ubi.soft.testlibraries.items.barsitems.BarsItems;
+import ubi.soft.testlibraries.items.barsitems.BarsItemsAdapter;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link CardContentFragment.OnFragmentInteractionListener} interface
+ * {@link CardContentFragmentListener} interface
  * to handle interaction events.
  * Use the {@link CardContentFragment#newInstance} factory method to
  * create an instance of this fragment.
@@ -39,7 +39,7 @@ public class CardContentFragment extends Fragment {
 
     private Realm realm;
 
-    private OnFragmentInteractionListener mListener;
+    private CardContentFragmentListener mListener;
 
     public CardContentFragment() {
         // Required empty public constructor
@@ -65,6 +65,8 @@ public class CardContentFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
+        setUpRealm();
+
     }
 
     private void setUpRealm() {
@@ -83,15 +85,15 @@ public class CardContentFragment extends Fragment {
 
 
     private void setUpRecyclerView() {
-        RealmResults<DrinksItems> items = getRealmItems();
-        final DrinksItemsAdapter adapter = new DrinksItemsAdapter(items);
+        RealmResults<BarsItems> items = getRealmItems();
+        final BarsItemsAdapter adapter = new BarsItemsAdapter(items);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
         recyclerView.setAdapter(adapter);
     }
 
-    public RealmResults<DrinksItems> getRealmItems() {
-        return realm.where(DrinksItems.class).sort("rating", Sort.DESCENDING).findAllAsync();
+    public RealmResults<BarsItems> getRealmItems() {
+        return realm.where(BarsItems.class).sort("rating", Sort.DESCENDING).findAllAsync();
     }
 
     void setRealm(Realm realm) {
@@ -120,7 +122,7 @@ public class CardContentFragment extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnFragmentInteractionListener {
+    public interface CardContentFragmentListener {
         void onFragmentInteraction(Uri uri);
     }
 }

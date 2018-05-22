@@ -19,16 +19,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import ubi.soft.testlibraries.R;
 import ubi.soft.testlibraries.ui.fragments.CardContentFragment;
 import ubi.soft.testlibraries.ui.fragments.ListContentFragment;
+import ubi.soft.testlibraries.ui.fragments.TileContentFragment;
 
 import static android.support.v4.view.GravityCompat.START;
 
@@ -77,12 +78,6 @@ public class MenuActivity extends AppCompatActivity {
                 return true;
             }
         });
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Snackbar.make(v, "Hello snackbar", Snackbar.LENGTH_LONG).show();
-            }
-        });
         setupViewPager(viewPager);
         tabLayout.setupWithViewPager(viewPager);
     }
@@ -92,6 +87,14 @@ public class MenuActivity extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_navigation, menu);
         return true;
+    }
+
+    @OnClick(R.id.fab)
+    public void onFabButtonClicked() {
+        Fragment page = getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.menu_activity_viewpager + ":" + viewPager.getCurrentItem());
+        if (page instanceof CardContentFragment) {
+            Snackbar.make(this.getCurrentFocus(), "Hello snackbar", Snackbar.LENGTH_LONG).show();
+        }
     }
 
     @Override
@@ -109,7 +112,7 @@ public class MenuActivity extends AppCompatActivity {
     private void setupViewPager(ViewPager viewPager) {
         Adapter adapter = new Adapter(getSupportFragmentManager());
         adapter.addFragment(new ListContentFragment(), "List");
-//        adapter.addFragment(new TileContentFragment(), "Tile");
+        adapter.addFragment(new TileContentFragment(), "Tile");
         adapter.addFragment(new CardContentFragment(), "Card");
         viewPager.setAdapter(adapter);
     }

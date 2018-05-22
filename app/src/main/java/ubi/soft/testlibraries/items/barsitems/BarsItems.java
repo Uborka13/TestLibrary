@@ -11,8 +11,8 @@ public class BarsItems extends RealmObject {
     @Required
     private String name;
     private float rating;
-    @Required
     private int population;
+    private byte image;
 
     public String getId() {
         return id;
@@ -47,6 +47,15 @@ public class BarsItems extends RealmObject {
 
     public BarsItems withPopulation(int population) {
         this.population = population;
+        return this;
+    }
+
+    public byte getImage() {
+        return image;
+    }
+
+    public BarsItems withImage(byte image) {
+        this.image = image;
         return this;
     }
 }
