@@ -16,6 +16,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.realm.Realm;
 import io.realm.RealmResults;
+import io.realm.Sort;
 import io.realm.SyncConfiguration;
 import io.realm.SyncUser;
 import ubi.soft.testlibraries.BuildConfig;
@@ -23,6 +24,8 @@ import ubi.soft.testlibraries.R;
 import ubi.soft.testlibraries.controllers.RealmController;
 import ubi.soft.testlibraries.items.barsitems.BarsItems;
 import ubi.soft.testlibraries.items.barsitems.BarsItemsAdapter;
+
+import static ubi.soft.testlibraries.items.barsitems.BarsItems.FieldNames.*;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -93,6 +96,7 @@ public class CardContentFragment extends Fragment {
     }
 
     public RealmResults<BarsItems> getRealmItems() {
+        RealmController.getInstance().getRealmListSorted(BarsItems.class, NAME.getFieldName(), Sort.DESCENDING);
         return RealmController.getInstance().getRealmList(BarsItems.class);
         //return realm.where(BarsItems.class).sort("rating", Sort.DESCENDING).findAllAsync();
     }

@@ -16,9 +16,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.realm.Realm;
 import io.realm.RealmResults;
-import io.realm.SyncConfiguration;
-import io.realm.SyncUser;
-import ubi.soft.testlibraries.BuildConfig;
 import ubi.soft.testlibraries.R;
 import ubi.soft.testlibraries.controllers.RealmController;
 import ubi.soft.testlibraries.items.drinksitems.DrinksItems;
@@ -64,22 +61,7 @@ public class ListContentFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
-        setUpRealm();
-
-
-    }
-
-    private void setUpRealm() {
-        final SyncConfiguration userConfig = new SyncConfiguration.Builder(SyncUser.current(), BuildConfig.BASE_URL + "/~/drinks").build();
-        Realm.getInstanceAsync(userConfig, new Realm.Callback() {
-            @Override
-            public void onSuccess(@NonNull Realm realm) {
-                setRealm(realm);
-                setUpRecyclerView();
-                // Realm is now downloaded and ready. New changes to Realm will continue
-                // to be synchronized in the background as normal.
-            }
-        });
+        setUpRecyclerView();
 
     }
 
@@ -89,10 +71,6 @@ public class ListContentFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
         recyclerView.setAdapter(adapter);
-    }
-
-    void setRealm(Realm realm) {
-        this.realm = realm;
     }
 
     @Override

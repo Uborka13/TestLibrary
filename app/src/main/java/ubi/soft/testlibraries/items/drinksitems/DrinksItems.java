@@ -35,4 +35,20 @@ public class DrinksItems extends RealmObject {
     public void setRating(float rating) {
         this.rating = rating;
     }
+
+    public enum FieldNames {
+        ID("id"),
+        NAME("name"),
+        RATING("rating");
+
+        private String fieldName;
+
+        FieldNames(String fieldName) {
+            this.fieldName = fieldName;
+        }
+
+        public String getFieldName() {
+            return fieldName;
+        }
+    }
 }

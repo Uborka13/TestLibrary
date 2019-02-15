@@ -58,4 +58,22 @@ public class BarsItems extends RealmObject {
         this.image = image;
         return this;
     }
+
+    public enum FieldNames {
+        ID("id"),
+        NAME("name"),
+        RATING("rating"),
+        POPULATION("population"),
+        IMAGE("image");
+
+        private String fieldName;
+
+        FieldNames(String fieldName) {
+            this.fieldName = fieldName;
+        }
+
+        public String getFieldName() {
+            return fieldName;
+        }
+    }
 }

@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
+import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,13 +24,14 @@ import io.realm.permissions.AccessLevel;
 import io.realm.permissions.PermissionRequest;
 import io.realm.permissions.UserCondition;
 import ubi.soft.testlibraries.R;
+import ubi.soft.testlibraries.controllers.RealmController;
 import ubi.soft.testlibraries.ui.fragments.LoginFragment;
 import ubi.soft.testlibraries.ui.fragments.RegistrationFragment;
 import ubi.soft.testlibraries.users.User;
 
 import static ubi.soft.testlibraries.BuildConfig.BASE_URL;
 
-public class LoginActivity extends AppCompatActivity implements LoginFragment.OnFragmentInteractionListener, RegistrationFragment.OnFragmentInteractionListener {
+public class LoginActivity extends AppCompatActivity implements LoginFragment.OnFragmentInteractionListener, RegistrationFragment.OnFragmentInteractionListener, SyncUser.Callback<SyncUser> {
 
 
     @BindView(R.id.login_progress)
@@ -47,7 +49,7 @@ public class LoginActivity extends AppCompatActivity implements LoginFragment.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
-        if (SyncUser.current() != null) {
+        if (RealmController.getInstance().isUserLoggedIn()) {
             this.goToMenuActivity();
         }
         getSupportFragmentManager().beginTransaction().replace(R.id.frame_login_fragment_container, LoginFragment.newInstance()).commitAllowingStateLoss();
@@ -56,7 +58,8 @@ public class LoginActivity extends AppCompatActivity implements LoginFragment.On
     @Override
     public void userAttemptToLogin(final SyncCredentials credentials) {
         showProgress(true);
-        SyncUser.logInAsync(credentials, BASE_URL + "/auth", new SyncUser.Callback<SyncUser>() {
+        RealmController.sendUserLoginCredentials(credentials, this);
+        /*SyncUser.logInAsync(credentials, BASE_URL + "/auth", new SyncUser.Callback<SyncUser>() {
             @Override
             public void onSuccess(SyncUser result) {
                 showProgress(false);
@@ -72,7 +75,7 @@ public class LoginActivity extends AppCompatActivity implements LoginFragment.On
                 Log.d("LOGIN_ACTIVITY", "Nem sikerült ErrorCode: " + error.getErrorCode());
                 Log.d("LOGIN_ACTIVITY", "Nem sikerült Exception: " + error.getException());
             }
-        });
+        });*/
     }
 
 
@@ -144,4 +147,19 @@ public class LoginActivity extends AppCompatActivity implements LoginFragment.On
         startActivity(intent);
     }
 
+    @Override
+    public void onSuccess(SyncUser result) {
+        showProgress(false);
+        goToMenuActivity();
+    }
+
+    @Override
+    public void onError(ObjectServerError error) {
+        showProgress(false);
+        Toast.makeText(this, error.getErrorMessage(), Toast.LENGTH_SHORT).show();
+        Log.d("LOGIN_ACTIVITY", "Nem sikerült Message: " + error.getErrorMessage());
+        Log.d("LOGIN_ACTIVITY", "Nem sikerült Category: " + error.getCategory());
+        Log.d("LOGIN_ACTIVITY", "Nem sikerült ErrorCode: " + error.getErrorCode());
+        Log.d("LOGIN_ACTIVITY", "Nem sikerült Exception: " + error.getException());
+    }
 }

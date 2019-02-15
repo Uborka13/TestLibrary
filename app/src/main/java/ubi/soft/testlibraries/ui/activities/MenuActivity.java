@@ -29,7 +29,6 @@ import butterknife.OnClick;
 import ubi.soft.testlibraries.R;
 import ubi.soft.testlibraries.ui.fragments.CardContentFragment;
 import ubi.soft.testlibraries.ui.fragments.ListContentFragment;
-import ubi.soft.testlibraries.ui.fragments.TileContentFragment;
 
 import static android.support.v4.view.GravityCompat.START;
 
@@ -112,7 +111,7 @@ public class MenuActivity extends AppCompatActivity {
     private void setupViewPager(ViewPager viewPager) {
         Adapter adapter = new Adapter(getSupportFragmentManager());
         adapter.addFragment(new ListContentFragment(), "List");
-        adapter.addFragment(new TileContentFragment(), "Tile");
+//        adapter.addFragment(new TileContentFragment(), "Tile");
         adapter.addFragment(new CardContentFragment(), "Card");
         viewPager.setAdapter(adapter);
     }
